@@ -1,16 +1,118 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import TypedText from '../components/TypedText.svelte';
+import ThemeToggle from '../components/ThemeToggle.svelte';
 
+const personalInfo = {
+	name: "Pratham Rajshree",
+	email: "prathamrajshree@gmail.com",
+	github: "https://github.com/PrathamRajshree",
+	linkedin: "https://in.linkedin.com/in/pratham-rajshree-a53331217",
+};
+
+const skills = ["Python", "C / C++", "Java", "HTML", "CSS", "JavaScript", "OOP", "DSA", "MongoDB", "APIs", "Node.js", "Tailwind CSS"];
+
+const projects = [
+	{ 
+		title: "Chat Notes App", 
+		description: "Its a website where you can interact with your notes. When you upload your pdf you will get an option to ask your question along with multiple preloaded options like summarize, generate quiz, flash cards, download quiz pdf.", 
+		liveUrl: "#", // Add your live deployment link here if you have one
+		sourceUrl: "https://github.com/PrathamRajshree/chat-notes-app" 
+	}
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={`${personalInfo.name} - Portfolio`}>
+	<header class="fixed top-0 left-0 w-full z-50 bg-primary/80 dark:bg-secondary/80 backdrop-blur-sm transition-shadow duration-300" id="header">
+		<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+			<a href="/" class="text-xl font-bold text-accent">{personalInfo.name}</a>
+			<div class="flex items-center space-x-4">
+				<div class="hidden md:flex space-x-8">
+					<a href="#about" class="hover:text-accent transition-colors">About</a>
+					<a href="#skills" class="hover:text-accent transition-colors">Skills</a>
+					<a href="#projects" class="hover:text-accent transition-colors">Projects</a>
+				</div>
+				<ThemeToggle client:load />
+			</div>
+		</nav>
+	</header>
+
+	<main class="container mx-auto px-6">
+		<section id="hero" class="min-h-screen flex flex-col justify-center">
+			<div>
+				<p class="text-lg text-accent">Hello, my name is</p>
+				<h1 class="text-5xl md:text-7xl font-bold my-2 text-text-primary">{personalInfo.name}</h1>
+				<h2 class="text-4xl md:text-6xl font-bold text-text-secondary">
+					I <TypedText client:visible />
+				</h2>
+				<p class="mt-4 text-text-secondary max-w-xl">
+					A Computer Science student at VIT Vellore with a passion for building AI-integrated tools and solving real-world problems through code.
+				</p>
+			</div>
+		</section>
+
+		<section id="about" class="py-24">
+			<h2 class="text-4xl font-bold text-center mb-12 relative w-max mx-auto">
+				About Me
+				<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-accent"></span>
+			</h2>
+			<p class="max-w-3xl mx-auto text-center text-text-secondary text-lg">
+				I am a Computer Science and Engineering student with a strong interest in software development and problem-solving. Skilled in programming languages such as C, C++, Python, and Java, I have also gained experience in web development and database management through academic projects and self-learning. I enjoy exploring new technologies, building efficient solutions, and collaborating on innovative ideas. My goal is to apply my technical skills and analytical mindset to contribute effectively in a dynamic and growth-oriented environment.
+			</p>
+		</section>
+
+		<section id="skills" class="py-24">
+			<h2 class="text-4xl font-bold text-center mb-12 relative w-max mx-auto">
+				Technical Skills
+				<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-accent"></span>
+			</h2>
+			<div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+				{skills.map(skill => (
+					<div class="bg-card-bg border border-border rounded-lg p-4 text-center hover:bg-accent/10 hover:-translate-y-1 transition-all duration-300">
+						{skill}
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section id="projects" class="py-24">
+			<h2 class="text-4xl font-bold text-center mb-12 relative w-max mx-auto">
+				My Projects
+				<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-accent"></span>
+			</h2>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{projects.map(project => (
+					<div class="bg-card-bg border border-border rounded-lg flex flex-col hover:-translate-y-2 transition-transform duration-300">
+						<div class="p-6 flex-grow">
+							<h3 class="text-2xl font-bold text-accent mb-2">{project.title}</h3>
+							<p class="text-text-secondary">{project.description}</p>
+						</div>
+						<div class="p-6 pt-0">
+    <a href={project.sourceUrl} target="_blank" class="font-semibold hover:text-accent transition-colors">Source Code</a>
+</div>
+					</div>
+				))}
+			</div>
+		</section>
+	</main>
+	
+	<footer class="text-center py-8 border-t border-border">
+		<div class="flex justify-center space-x-6 mb-4">
+			<a href={personalInfo.github} target="_blank" class="text-text-secondary hover:text-accent transition-colors">GitHub</a>
+			<a href={personalInfo.linkedin} target="_blank" class="text-text-secondary hover:text-accent transition-colors">LinkedIn</a>
+			<a href={`mailto:${personalInfo.email}`} class="text-text-secondary hover:text-accent transition-colors">Email</a>
+		</div>
+		<p class="text-text-secondary">Designed & Built by {personalInfo.name} &copy; 2025</p>
+	</footer>
+</Layout>
+<script>
+	// Simple scroll effect for header
+	const header = document.getElementById('header');
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > 50) {
+			header?.classList.add('shadow-lg', 'dark:shadow-black/20', 'shadow-slate-300/20');
+		} else {
+			header?.classList.remove('shadow-lg', 'dark:shadow-black/20', 'shadow-slate-300/20');
+		}
+	});
+</script>
