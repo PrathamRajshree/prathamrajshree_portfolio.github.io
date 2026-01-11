@@ -13,19 +13,29 @@ const personalInfo = {
 const skills = ["Python", "C / C++", "Java", "HTML", "CSS", "JavaScript", "OOP", "DSA", "MongoDB", "APIs", "Node.js", "Tailwind CSS"];
 
 const projects = [
-	{ 
-		title: "Chat Notes App", 
-		description: "Its a website where you can interact with your notes. When you upload your pdf you will get an option to ask your question along with multiple preloaded options like summarize, generate quiz, flash cards, download quiz pdf.", 
-		liveUrl: "#", // Add your live deployment link here if you have one
-		sourceUrl: "https://github.com/PrathamRajshree/chat-notes-app" 
-	}
+  { 
+    title: "Chat Notes App", 
+    description: "Its a website where you can interact with your notes. When you upload your pdf you will get an option to ask your question along with multiple preloaded options like summarize, generate quiz, flash cards, download quiz pdf.", 
+    liveUrl: "#",
+    sourceUrl: "https://github.com/PrathamRajshree/chat-notes-app" 
+  },
+
+  { 
+    title: "Voice-Based ADR Reporter",
+    description: "A voice-enabled system that allows users to report adverse drug reactions using speech recognition and automated form filling.",
+    liveUrl: "#",
+    sourceUrl: "https://github.com/PrathamRajshree/voice-adr-reporter"
+  }
 ];
 ---
 
 <Layout title={`${personalInfo.name} - Portfolio`}>
 	<header class="fixed top-0 left-0 w-full z-50 bg-primary/80 dark:bg-secondary/80 backdrop-blur-sm transition-shadow duration-300" id="header">
 		<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-			<a href="/" class="text-xl font-bold text-accent">{personalInfo.name}</a>
+			<span class="text-xl font-bold text-accent cursor-default">
+  			{personalInfo.name}
+			</span>
+
 			<div class="flex items-center space-x-4">
 				<div class="hidden md:flex space-x-8">
 					<a href="#about" class="hover:text-accent transition-colors">About</a>
