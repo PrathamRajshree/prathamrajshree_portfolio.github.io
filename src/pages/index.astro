@@ -12,7 +12,7 @@ const personalInfo = {
 
 const skills = [
   "Python", "C / C++", "Java", "HTML", "CSS", "JavaScript",
-  "OOP", "DSA", "MongoDB", "APIs", "Node.js", "Tailwind CSS"
+  "OOPS", "DSA", "MongoDB", "APIs", "Node.js", "Tailwind CSS"
 ];
 
 const projects = [
@@ -20,7 +20,7 @@ const projects = [
     title: "Chat Notes App",
     description:
       "Its a website where you can interact with your notes. Upload a PDF and ask questions, summarize content, generate quizzes, flashcards, and download quiz PDFs.",
-    liveUrl: "#",
+    liveMainUrl: "#",
     sourceUrl: "https://github.com/PrathamRajshree/chat-notes-app"
   },
 
@@ -28,8 +28,8 @@ const projects = [
     title: "Voice-Based ADR Reporter",
     description:
       "A voice-enabled system that allows users to report adverse drug reactions using speech recognition and automated form filling.",
-    liveUrl: "https://voicebasedadr.web.app/",
-	liveUrl:"https://voicebasedadr.web.app/admin_dashboard.html",
+    liveMainUrl: "https://voicebasedadr.web.app/",
+    liveDashboardUrl: "https://voicebasedadr.web.app/admin_dashboard.html",
     sourceUrl: "https://github.com/PrathamRajshree/voice-based-adr-reporter"
   },
 
@@ -37,7 +37,7 @@ const projects = [
     title: "Ephemeral File Sharing App (zyppp-share-pro)",
     description:
       "A privacy-focused file sharing web application that allows users to securely share files using custom links or QR codes, set expiry times, and enable self-destruct after a single download.",
-    liveUrl: "http://51.21.194.94/",
+    liveMainUrl: "http://51.21.194.94/",
     sourceUrl: "https://github.com/PrathamRajshree/zyppp-share-pro"
   }
 ];
@@ -109,7 +109,7 @@ const projects = [
               <p class="text-text-secondary">{project.description}</p>
             </div>
 
-            <div class="p-6 pt-0 flex gap-6">
+            <div class="p-6 pt-0 flex gap-6 flex-wrap">
               <a
                 href={project.sourceUrl}
                 target="_blank"
@@ -119,14 +119,25 @@ const projects = [
                 Source Code
               </a>
 
-              {project.liveUrl !== "#" ? (
+              {project.liveMainUrl && project.liveMainUrl !== "#" ? (
                 <a
-                  href={project.liveUrl}
+                  href={project.liveMainUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="font-semibold hover:text-accent"
                 >
-                  Live Demo
+                  Live App
+                </a>
+              ) : null}
+
+              {project.liveDashboardUrl ? (
+                <a
+                  href={project.liveDashboardUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold hover:text-accent"
+                >
+                  Admin Dashboard
                 </a>
               ) : null}
             </div>
